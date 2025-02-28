@@ -4,6 +4,7 @@ const SamlStrategy = require("passport-saml").Strategy;
 const fs = require("fs");
 const bodyParser = require("body-parser");
 const rateLimit = require("express-rate-limit");
+const rateLimit = require("express-rate-limit");
 require("dotenv").config();
 
 const app = express();

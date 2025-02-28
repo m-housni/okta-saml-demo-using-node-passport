@@ -2,6 +2,8 @@
 
 This project demonstrates the implementation of SAML (Security Assertion Markup Language) for Single Sign-On (SSO) authentication.
 
+![image](https://github.com/user-attachments/assets/3a4a96ff-88fd-4427-bcb5-f70f6968b42e)
+
 ## Features
 
 - SAML-based authentication
