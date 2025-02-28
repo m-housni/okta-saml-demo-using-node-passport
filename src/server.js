@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 require("dotenv").config();
 
 const app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
 
 // SAML Strategy Configuration
 passport.use(
