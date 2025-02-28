@@ -10,6 +10,7 @@ const app = express();
 app.use(express.json());
 
 // Rate Limiter
+// TODO: fix the too many requests error
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 5, // limit each IP to 100 requests per windowMs
