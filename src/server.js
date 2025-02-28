@@ -3,10 +3,20 @@ const passport = require("passport");
 const SamlStrategy = require("passport-saml").Strategy;
 const fs = require("fs");
 const bodyParser = require("body-parser");
+const rateLimit = require("express-rate-limit");
 require("dotenv").config();
 
 const app = express();
 app.use(express.json());
+
+// Rate Limiter
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5, // limit each IP to 100 requests per windowMs
+  message: "Too many requests from this IP, please try again later.",
+});
+
+app.use(limiter);
 
 // SAML Strategy Configuration
 passport.use(
