@@ -15,9 +15,12 @@ passport.use(
       entryPoint: process.env.SAML_ENTRYPOINT, // From Okta Metadata
       issuer: process.env.SAML_ISSUER, // SP Entity ID
       callbackUrl: "http://localhost:3000/auth/saml/callback",
-      cert: fs.readFileSync("./okta_cert.pem", "utf-8"), // Okta X.509 Certificate
+      cert: fs.readFileSync("./okta.cert", "utf-8"), // Okta X.509 Certificate
     },
-    (profile, done) => done(null, profile)
+    (profile, done) => {
+      console.log("SAML Profile:", profile);
+      return done(null, profile);
+    }
   )
 );
 
@@ -33,6 +36,7 @@ app.post(
   "/auth/saml/callback",
   passport.authenticate("saml", { failureRedirect: "/", session: false }),
   (req, res) => {
+    console.log("SAML Callback User:", req.user);
     res.send(`Welcome, ${req.user.nameID}!`);
   }
 );
